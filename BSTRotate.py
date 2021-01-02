@@ -161,7 +161,7 @@ class BSTRotateAnimation(Scene):
             DrawBorderThenFill(node_6, run_time=1),
         )
 
-        self.play(
+        self.play( 
             node_4.move_to, DOWN * 2 + LEFT * 4,
             node_5.move_to, DOWN * 2 + RIGHT,
             node_6.move_to, DOWN * 2 + RIGHT * 4,
