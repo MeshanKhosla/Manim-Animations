@@ -1,4 +1,5 @@
-from manimlib.imports import *
+from manim import *
+
 
 class Grid(VGroup):
     CONFIG = {
@@ -28,7 +29,7 @@ class ScreenGrid(VGroup):
     CONFIG = {
         "rows": 8,
         "columns": 14,
-        "height": FRAME_Y_RADIUS * 2,
+        "height": 8,
         "width": 14,
         "grid_stroke": 0.5,
         "grid_color": WHITE,
@@ -41,8 +42,18 @@ class ScreenGrid(VGroup):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        rows = self.rows
-        columns = self.columns
+        rows = ScreenGrid.CONFIG["rows"]
+        columns = ScreenGrid.CONFIG["columns"]
+        self.height = ScreenGrid.CONFIG["height"]
+        self.width = ScreenGrid.CONFIG["width"]
+        self.grid_stroke = ScreenGrid.CONFIG["grid_stroke"]
+        self.grid_color = ScreenGrid.CONFIG["grid_color"]
+        self.axis_stroke = ScreenGrid.CONFIG["axis_stroke"]
+        self.labels_scale = ScreenGrid.CONFIG["labels_scale"]
+        self.labels_buff = ScreenGrid.CONFIG["labels_buff"]
+        self.number_decimals = ScreenGrid.CONFIG["number_decimals"]
+        self.axis_color = ScreenGrid.CONFIG["axis_color"]
+
         grid = Grid(width=self.width, height=self.height, rows=rows, columns=columns)
         grid.set_stroke(self.grid_color, self.grid_stroke)
 
@@ -85,7 +96,7 @@ class Title(VGroup):
         rotate_left_txt = TextMobject(text)
         rotate_left_txt.to_corner(UL)
         self.add(rotate_left_txt)
-
+        
 class LLNode(VGroup):
     def __init__(self, value, pos, is_end, **kwargs):
         super().__init__(**kwargs)
@@ -118,8 +129,6 @@ class LLNode(VGroup):
             return
             
         self.add(node, text, self.arrow)
-
-
 
 class ReverseLL(Scene):
     def setup(self):
